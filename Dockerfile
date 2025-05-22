@@ -1,5 +1,5 @@
 FROM python:3.8
-
+FROM cadquery/pythonocc-core:latest
 RUN apt-get update && apt-get install -y \
     git \
     libgl1-mesa-glx \
@@ -18,7 +18,7 @@ WORKDIR /app
 COPY . /app
 
 RUN pip install wheel
-RUN pip install --no-cache-dir pythonocc-core
+RUN pip install streamlit pandas numpy scikit-learn matplotlib
 RUN pip install -r requirements.txt
 
 CMD ["streamlit", "run", "app.py", "--server.port=$PORT", "--server.address=0.0.0.0"]
