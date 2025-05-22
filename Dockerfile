@@ -1,4 +1,4 @@
-FROM cadquery/pythonocc-core:latest
+FROM ghcr.io/tiagoprn/pythonocc-docker:latest
 
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
