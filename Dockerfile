@@ -1,6 +1,7 @@
 FROM python:3.8
 
 RUN apt-get update && apt-get install -y \
+    git \
     libgl1-mesa-glx \
     libxrender1 \
     libsm6 \
@@ -10,11 +11,14 @@ RUN apt-get update && apt-get install -y \
     libxi-dev \
     libxmu-dev \
     build-essential \
+    cmake \
     && pip install --upgrade pip
 
 WORKDIR /app
 COPY . /app
+
+RUN pip install wheel
+RUN pip install --no-cache-dir pythonocc-core
 RUN pip install -r requirements.txt
 
 CMD ["streamlit", "run", "app.py", "--server.port=$PORT", "--server.address=0.0.0.0"]
- 
